@@ -25,25 +25,45 @@ const categoryNews = async (id) => {
 
 const displayNews = (news) => {
   const newsContainer = document.getElementById("news-list");
+  newsContainer.textContent = " ";
   news.forEach((news) => {
-    console.log(news);
-    const { title, thumbnail_url, details } = news;
+    // console.log(news);
+    const { title, thumbnail_url, details, author } = news;
+    const { name, img, published_date } = author;
     const newsDiv = document.createElement("div");
-    newsDiv.classList.add("card", "mb-3");
+    newsDiv.classList.add("card", "mb-3", "border-0");
     newsDiv.innerHTML = `
         <div class="shadow-sm row g-0">
-              <div class="col-md-4">
-                <img src="${thumbnail_url}" class="img-fluid rounded-start" alt="">
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title">${title}</h5>
-                  <p class="card-text">${details}</p>
-                  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                <div class="col-md-2 p-2">
+                  <img src="${thumbnail_url}" class="img-fluid rounded-start" alt="">
                 </div>
-              </div>
-            </div>
+                <div class="col-md-10">
+                   <div class="card-body">
+                      <h5 class="card-title">${title}</h5>
+                      <p class="card-text">${details}</p>
+
+
+                    <div class= "flex align-items-center row">
+                      <div class="col-md-1 p-2" style="max-height: 10rem">
+                         <img src="${img}" class="img-fluid rounded-circle" style="max-height: 3.8rem" alt="">
+                      </div>
+                      <div class="col-md-4">
+                          <div class="card-body>
+                              <h5 class="card-title">${name}</h5>
+                              <p class="card-text">${published_date}</p>
+                          </div>
+                       </div>
+                       
+                    </div>
+
+
+
+                   </div>
+                </div>
+        </div>
         `;
     newsContainer.appendChild(newsDiv);
   });
 };
+
+
