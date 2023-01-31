@@ -17,6 +17,7 @@ const displayCategory = (categories) => {
   });
 };
 const categoryNews = async (id) => {
+  // console.log(id);
   const url = `https://openapi.programming-hero.com/api/news/category/${id}`;
   const res = await fetch(url);
   const data = await res.json();
@@ -44,7 +45,7 @@ const displayNews = (news) => {
 
 
                     <div class= "flex align-items-center row">
-                      <div class="col-md-1 p-2" style="max-height: 10rem">
+                    <div class="col-md-1 p-2" style="max-height: 10rem">
                          <img src="${img}" class="img-fluid rounded-circle" style="max-height: 3.8rem" alt="">
                       </div>
                       <div class="col-md-4">
@@ -65,5 +66,3 @@ const displayNews = (news) => {
     newsContainer.appendChild(newsDiv);
   });
 };
-
-
