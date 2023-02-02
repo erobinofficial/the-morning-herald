@@ -29,7 +29,7 @@ const displayNews = (news) => {
   document.getElementById("count-value").innerHTML = `
   
   <div class="card mb-3 border-0">
-        <div class="shadow-sm row g-0 p-3 fs-3">
+        <div class="shadow-sm row g-0 p-3 fs-4">
           ${news.length} news showing
         </div>
       </div>
