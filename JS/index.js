@@ -25,7 +25,7 @@ const categoryNews = async (id) => {
 };
 
 const displayNews = (news) => {
-  console.log(news.length);
+  // console.log(news.length);
   document.getElementById("count-value").innerHTML = `
   
   <div class="card mb-3 border-0">
@@ -39,7 +39,7 @@ const displayNews = (news) => {
   newsContainer.textContent = " ";
   news.forEach((news) => {
     // console.log(news);
-    const { title, thumbnail_url, details, author, _id } = news;
+    const { title, thumbnail_url, details, author, _id, total_view } = news;
     const { name, img, published_date } = author;
     const newsDiv = document.createElement("div");
     newsDiv.classList.add("card", "mb-3", "border-0", "rounded-4");
@@ -59,12 +59,15 @@ const displayNews = (news) => {
                     <div class= "flex align-items-center row">
                     <div class="col-md-1 p-2" style="max-height: 10rem">
                          <img src="${img}" class="img-fluid rounded-circle" style="max-height: 3.8rem" alt="">
-                      </div>
-                      <div class="col-md-10">
+                      </div>                      
+                      <div class="col-md-5">
                           <div class="card-body>
                               <h5 class="card-title">${name}</h5>
                               <p class="card-text">${published_date}</p>
                           </div>
+                       </div>
+                       <div class="col-md-5">
+                       <i class="fa-regular fa-eye fa-1x"> <span class="fw-bolder ms-2">${total_view} M</span></i>
                        </div>
                        <div class="col-md-1">
                        <div onclick="loadNewsDetails('${_id}')" class="btn color" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-arrow-right fa-2x"></i></div>
@@ -90,9 +93,9 @@ const loadNewsDetails = async (id) => {
 };
 
 const displayNewsDetails = (news) => {
-  console.log(news);
+  // console.log(news);
   const { _id, title, image_url, details } = news[0];
-  console.log(details);
+  // console.log(details);
   const newsDetails = document.getElementById("news-details");
   newsDetails.innerHTML = `
   <div class="modal-header">
