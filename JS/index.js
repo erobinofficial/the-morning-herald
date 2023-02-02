@@ -39,32 +39,34 @@ const displayNews = (news) => {
   newsContainer.textContent = " ";
   news.forEach((news) => {
     // console.log(news);
-    const { title, thumbnail_url, details, author , _id} = news;
+    const { title, thumbnail_url, details, author, _id } = news;
     const { name, img, published_date } = author;
     const newsDiv = document.createElement("div");
-    newsDiv.classList.add("card", "mb-3", "border-0");
+    newsDiv.classList.add("card", "mb-3", "border-0", "rounded-4");
     newsDiv.innerHTML = `
-        <div class="shadow-sm row g-0">
-                <div class="col-md-2 p-2">
+        <div class="shadow-sm row g-0 p-3">
+                <div class="col-md-2 p-2 flex align-items-center justify-content-center">
                   <img src="${thumbnail_url}" class="img-fluid rounded-start" alt="">
                 </div>
                 <div class="col-md-10">
                    <div class="card-body">
                       <h5 class="card-title">${title}</h5>
-                      <p class="card-text">${details?.slice(0, 500)} ${details?.length > 499 ? "..." : ""}</p>
+                      <p class="card-text">${details?.slice(0, 500)} ${
+      details?.length > 499 ? "..." : ""
+    }</p>
 
 
                     <div class= "flex align-items-center row">
                     <div class="col-md-1 p-2" style="max-height: 10rem">
                          <img src="${img}" class="img-fluid rounded-circle" style="max-height: 3.8rem" alt="">
                       </div>
-                      <div class="col-md-9">
+                      <div class="col-md-10">
                           <div class="card-body>
                               <h5 class="card-title">${name}</h5>
                               <p class="card-text">${published_date}</p>
                           </div>
                        </div>
-                       <div class="col-md-2">
+                       <div class="col-md-1">
                        <div onclick="loadNewsDetails('${_id}')" class="btn color" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-arrow-right fa-2x"></i></div>
                        </div>
                        
@@ -80,16 +82,16 @@ const displayNews = (news) => {
   });
 };
 
-const loadNewsDetails = async (id) =>{
+const loadNewsDetails = async (id) => {
   const url = `https://openapi.programming-hero.com/api/news/${id}`;
   const res = await fetch(url);
   const data = await res.json();
   displayNewsDetails(data.data);
-}
+};
 
 const displayNewsDetails = (news) => {
   console.log(news);
-  const {_id, title, image_url, details} = news[0];
+  const { _id, title, image_url, details } = news[0];
   console.log(details);
   const newsDetails = document.getElementById("news-details");
   newsDetails.innerHTML = `
@@ -97,13 +99,12 @@ const displayNewsDetails = (news) => {
         <h1 class="modal-title fs-5" id="exampleModalLabel">${title}</h1>
       </div>
       <div class="modal-body">
-        ...
+        <img src="${image_url}" class="img-fluid rounded-start" alt="">
+        <p>${details}</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
   
   `;
-}
-
+};
