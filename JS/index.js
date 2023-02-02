@@ -12,7 +12,7 @@ const displayCategory = (categories) => {
     const categoryDiv = document.createElement("div");
     categoryDiv.classList.add("col");
     categoryDiv.innerHTML = `
-    <div onclick ="categoryNews('${category_id}')" class="btn btn-light mt-3 py-1">${category_name}</div>`;
+    <div onclick ="categoryNews('${category_id}')" class="btn btn-light mt-3 py-1 text-black-50">${category_name}</div>`;
     categoryContainer.appendChild(categoryDiv);
   });
 };
@@ -51,7 +51,7 @@ const displayNews = (news) => {
                 <div class="col-md-10">
                    <div class="card-body">
                       <h5 class="card-title">${title}</h5>
-                      <p class="card-text">${details?.slice(0, 500)} ${
+                      <p class="card-text text-black-50">${details?.slice(0, 500)} ${
       details?.length > 499 ? "..." : ""
     }</p>
 
